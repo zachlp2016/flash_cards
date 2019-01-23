@@ -20,4 +20,24 @@ class Round
     new_turn
     # binding.pry
   end
+
+  def number_correct
+    correct = 0
+    @turns.each do |turn|
+      if turn.correct? == true
+        correct += 1
+      end
+    end
+    correct
+  end
+
+  def number_correct_by_category(category)
+    correct = 0
+    @turns.each do |turn|
+      if turn.card.category == category && turn.correct?
+        correct += 1
+      end
+    end
+    correct
+  end
 end
