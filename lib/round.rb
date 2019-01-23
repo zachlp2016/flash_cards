@@ -14,12 +14,10 @@ class Round
     deck.cards[turns.count]
   end
 
-# return it from the take_turn method. Also, when the
-# take_turn method is called, the Round should move on to
-# the next card in the deck.
-
   def take_turn(guess)
     new_turn = Turn.new(guess, current_card)
     @turns << new_turn
+    new_turn
+    # binding.pry
   end
 end
