@@ -9,16 +9,16 @@ class Turn
   end
 
   def correct?
-    if @guess == @card.answer
+    if guess == card.answer
       true
     end
   end
 
   def feedback
     if correct? == true
-      puts "Correct!"
+      p "Correct!"
     else
-      puts "Incorrect."
+      p "Incorrect."
     end
   end
 end
