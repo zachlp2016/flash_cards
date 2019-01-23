@@ -3,6 +3,7 @@ require 'minitest/pride'
 require './lib/card'
 require './lib/turn'
 require './lib/deck'
+require 'pry'
 
 class TestDeck < Minitest::Test
 
@@ -19,6 +20,18 @@ class TestDeck < Minitest::Test
     assert_instance_of Card, @card2
     assert_instance_of Card, @card3
     assert_instance_of Deck, @deck
+  end
+
+  def test_deck_holds_cards
+    assert_equal [@card, @card2, @card3], @deck.cards
+  end
+
+  def test_deck_tallies_card_count
+    assert_equal 3, @deck.count
+  end
+
+  def test_deck_has_cards_in_category
+    assert_equal [@card2, @card3], @deck.cards_in_category(:STEM)
   end
 
 
