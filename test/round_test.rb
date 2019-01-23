@@ -21,4 +21,12 @@ class RoundTest < Minitest::Test
     assert_instance_of Deck, @deck
     assert_instance_of Round, @round
   end
+
+  def test_round_holds_deck
+    assert_equal @deck, @round.deck
+  end
+
+  def test_round_has_turns
+    assert_equal [], @round.turns
+  end
 end
