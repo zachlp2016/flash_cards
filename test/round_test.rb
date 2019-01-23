@@ -3,6 +3,7 @@ require 'minitest/pride'
 require './lib/card'
 require './lib/deck'
 require './lib/round'
+require 'pry'
 
 class RoundTest < Minitest::Test
 
@@ -29,4 +30,16 @@ class RoundTest < Minitest::Test
   def test_round_has_turns
     assert_equal [], @round.turns
   end
+
+  def test_round_has_current_card
+    assert_equal @card_1, @round.current_card
+  end
+
+  def test_round_has_take_turn_method
+    new_turn = @round.take_turn("Juneau")
+    assert_equal new_turn, @round.turns
+  end
+  #
+  # def test_round_now_has_turns
+  # end
 end
