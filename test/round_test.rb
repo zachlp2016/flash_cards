@@ -13,4 +13,12 @@ class RoundTest < Minitest::Test
     @deck = Deck.new([@card_1, @card_2, @card_3])
     @round = Round.new(@deck)
   end
+
+  def test_classes_exist
+    assert_instance_of Card, @card_1
+    assert_instance_of Card, @card_2
+    assert_instance_of Card, @card_3
+    assert_instance_of Deck, @deck
+    assert_instance_of Round, @round
+  end
 end
