@@ -7,9 +7,9 @@ require 'pry'
 class Runner
 
   def initialize
-    @card_1 = Card.new("What is the capital of Alaska?", "Juneau", :Geography)
-    @card_2 = Card.new("The Viking spacecraft sent back to Earth photographs and reports about the surface of which planet?", "Mars", :STEM)
-    @card_3 = Card.new("Describe in words the exact direction that is 697.5° clockwise from due north?", "North north west", :STEM)
+    @card_1 = Card.new("Who is the current president", "Donald Trump", :Politics)
+    @card_2 = Card.new("How many branches of government are there?", "3", :Politics)
+    @card_3 = Card.new("On what continent is the country of Australia located", "Australia", :Geography)
     @card_4 = Card.new("What is the deepest part of the ocean", "Marianas Trench", :Geography)
     @deck = Deck.new([@card_1, @card_2, @card_3, @card_4])
     @round = Round.new(@deck)
@@ -18,7 +18,7 @@ class Runner
   def start_game
     introduction
     game_questions
-    end_game
+    results
   end
 
 
@@ -31,10 +31,6 @@ class Runner
     answer_3_result
     question_4
     answer_4_result
-  end
-
-  def end_game
-    results
   end
 
   def introduction
@@ -54,12 +50,12 @@ class Runner
   def answer_1_result
     answer_1 = gets.chomp
       @new_turn = @round.take_turn(answer_1)
+
     if answer_1 == @new_turn.card.answer
-      p "Correct!"
-    else
-      p "Incorrect. Please answer again."
-      answer_1_result
-    end
+        p "Correct!"
+      else
+        p "Incorrect."
+      end
     sleep(2)
     system('clear')
   end
@@ -79,8 +75,7 @@ class Runner
     if answer_2 == @new_turn_2.card.answer
       p "Correct!"
     else
-      p "Incorrect. Please answer again."
-      answer_2_result
+      p "Incorrect."
     end
     sleep(2)
     system('clear')
@@ -101,8 +96,7 @@ class Runner
     if answer_3 == @new_turn_3.card.answer
       p "Correct!"
     else
-      p "Incorrect. Please answer again."
-      answer_3_result
+      p "Incorrect."
     end
     sleep(2)
     system('clear')
@@ -123,11 +117,17 @@ class Runner
     if answer_4 == @new_turn_4.card.answer
       p "Correct!"
     else
-      p "Incorrect. Please answer again."
-      answer_4_result
+      p "Incorrect."
     end
     sleep(2)
     system('clear')
+  end
+
+  def results
+    p "******* Game Over! ******"
+    p "You had #{@round.number_correct} correct guesses out of #{@round.turns.count} for a total score of #{@round.percent_correct}"
+    p "#{@round.deck.cards[0].category} - #{@round.percent_correct_by_category(@round.deck.cards[0].category)} correct."
+    p "#{@round.deck.cards[2].category} - #{@round.percent_correct_by_category(@round.deck.cards[2].category)} correct."
   end
 end
 
