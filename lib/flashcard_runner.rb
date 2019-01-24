@@ -11,8 +11,9 @@ class Runner
   @card_3 = Card.new("Describe in words the exact direction that is 697.5° clockwise from due north?", "North north west", :STEM)
   @deck = Deck.new([@card_1, @card_2, @card_3])
   @round = Round.new(@deck)
-  @new_turn = @round.take_turn("Juneau")
-  @new_turn_2 = @round.take_turn("Venus")
+  @new_turn = @round.take_turn(answer_1)
+  @new_turn_2 = @round.take_turn(answer_2)
+  @new_turn_3 = @round.take_turn(answer_3)
 
 
 
@@ -22,6 +23,7 @@ class Runner
   p "Question: #{@new_turn.card.question}"
   system('clear')
   answer_1 = gets.chomp
+  @new_turn = @round.take_turn(answer_1)
 
   if answer_1 == @new_turn.card.answer
     p "Correct!"
@@ -32,6 +34,7 @@ class Runner
   end
 
   answer_2 = gets.chomp
+  @new_turn_2 = @round.take_turn(answer_2)
 
   if answer_2 == @new_turn_2.card.answer
     p "Correct!"
@@ -42,6 +45,7 @@ class Runner
   end
 
   answer_3 = gets.chomp
+  @new_turn_3 = @round.take_turn(answer_3)
 
   if answer_3 == @new_turn_3.card.answer
     p "Correct!"
