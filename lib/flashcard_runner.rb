@@ -6,49 +6,147 @@ require 'pry'
 
 class Runner
 
-  @card_1 = Card.new("What is the capital of Alaska?", "Juneau", :Geography)
-  @card_2 = Card.new("The Viking spacecraft sent back to Earth photographs and reports about the surface of which planet?", "Mars", :STEM)
-  @card_3 = Card.new("Describe in words the exact direction that is 697.5° clockwise from due north?", "North north west", :STEM)
-  @deck = Deck.new([@card_1, @card_2, @card_3])
-  @round = Round.new(@deck)
-  @new_turn = @round.take_turn("Juneau")
-  @new_turn_2 = @round.take_turn("Venus")
+  def initialize
+    @card_1 = Card.new("Who is the current president", "Donald Trump", :Politics)
+    @card_2 = Card.new("What company has created the Iphone", "Apple", :Finance)
+    @card_3 = Card.new("On what continent is the country of Australia located", "Australia", :Geography)
+    @card_4 = Card.new("What is the deepest part of the ocean", "Marianas Trench", :Geography)
+    @deck = Deck.new([@card_1, @card_2, @card_3, @card_4])
+    @round = Round.new(@deck)
+  end
+
+  def start_game
+    introduction
+    game_questions
+    results
+  end
 
 
+  def game_questions
+    question_1
+    answer_1_result
+    question_2
+    answer_2_result
+    question_3
+    answer_3_result
+    question_4
+    answer_4_result
+  end
 
-  p "Welcome!  You're playing with 4 cards."
-  p "--------------------------------------"
-  p "Ths is card number 1 out of 4."
-  p "Question: #{@new_turn.card.question}"
+  def introduction
+    puts "This is a 4 question game that will determine your propensity to answer"
+    puts "questions about XXXXXXXX.  Good Luck!"
+    sleep(2)
+    system('clear')
+  end
+
+  def question_1
+    puts "Card number 1 out of 4."
+    puts "--------------------------------------"
+    puts "\n"
+    puts "Question: #{@card_1.question}"
+  end
+
+  def answer_1_result
+    answer_1 = gets.chomp
+      @new_turn = @round.take_turn(answer_1)
+
+    if answer_1 == @new_turn.card.answer
+        puts "Correct!"
+      else
+        puts "Incorrect."
+      end
+    sleep(2)
+    system('clear')
+  end
+
   system('clear')
-  answer_1 = gets.chomp
 
-  if answer_1 == @new_turn.card.answer
-    p "Correct!"
-    p "This is card number 2 out of 4."
-    p "Question: #{@new_turn_2.card.question}"
-  else
-    p "Incorrect. Please answer again."
+  def question_2
+    puts "Card number 2 out of 4."
+    puts "--------------------------------------"
+    puts "\n"
+    puts "Question: #{@card_2.question}"
   end
 
-  answer_2 = gets.chomp
-
-  if answer_2 == @new_turn_2.card.answer
-    p "Correct!"
-    p "This is card number 3 out of 4."
-    p "Question: #{@new_turn_3.card.question}"
-  else
-    p "Incorrect."
+  def answer_2_result
+    answer_2 = gets.chomp
+      @new_turn_2 = @round.take_turn(answer_2)
+    if answer_2 == @new_turn_2.card.answer
+      puts "Correct!"
+    else
+      puts "Incorrect."
+    end
+    sleep(2)
+    system('clear')
   end
 
-  answer_3 = gets.chomp
+  system('clear')
 
-  if answer_3 == @new_turn_3.card.answer
-    p "Correct!"
-    p "This is card number 3 out of 4."
-    p "Question: #{@new_turn_3.card.question}"
-  else
-    p "Incorrect."
+  def question_3
+    puts "Card number 3 out of 4."
+    puts "--------------------------------------"
+    puts "\n"
+    puts "Question: #{@card_3.question}"
   end
 
+  def answer_3_result
+    answer_3 = gets.chomp
+      @new_turn_3 = @round.take_turn(answer_3)
+    if answer_3 == @new_turn_3.card.answer
+      puts "Correct!"
+    else
+      puts "Incorrect."
+    end
+    sleep(2)
+    system('clear')
+  end
+
+  system('clear')
+
+  def question_4
+    puts "Card number 4 out of 4."
+    puts "--------------------------------------"
+    puts "\n"
+    puts "Question: #{@card_4.question}"
+  end
+
+  def answer_4_result
+    answer_4 = gets.chomp
+      @new_turn_4 = @round.take_turn(answer_4)
+    if answer_4 == @new_turn_4.card.answer
+      puts"Correct!"
+    else
+      puts "Incorrect."
+    end
+    sleep(2)
+    system('clear')
+  end
+
+  def results
+    puts "/==========/ Game Over! /==========/"
+    puts "\n"
+    puts "You had #{@round.number_correct} correct guesses out of #{@round.turns.count} for a total score of #{@round.percent_correct.to_i} out of 100."
+    category_correct
+    #
+    # p "******* Game Over! ******"
+    # p "You had #{@round.number_correct} correct guesses out of #{@round.turns.count} for a total score of #{@round.percent_correct}"
+    # p "#{@round.deck.cards[0].category} - #{@round.percent_correct_by_category(@round.deck.cards[0].category)} correct."
+    # p "#{@round.deck.cards[2].category} - #{@round.percent_correct_by_category(@round.deck.cards[2].category)} correct."
+
+
+  end
+
+  def category_correct
+    categories = []
+    @round.deck.cards.each do |card|
+      categories << card.category
+    end
+    categories.uniq.each do |category|
+      puts "#{category} - #{@round.percent_correct_by_category(category).to_i}% correct"
+    end
+  end
 end
+
+newgame = Runner.new
+newgame.start_game
