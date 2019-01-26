@@ -2,17 +2,17 @@ require './lib/card'
 require './lib/turn'
 require './lib/deck'
 require './lib/round'
+require './lib/card_generator'
 require 'pry'
 
 class Runner
 
   def initialize
-    @cards = CardGenerator.new('/lib/card_generator')
-    @card_1 = Card.new("Who is the current president", "Donald Trump", :Politics)
-    @card_2 = Card.new("What company has created the Iphone", "Apple", :Finance)
-    @card_3 = Card.new("On what continent is the country of Australia located", "Australia", :Geography)
-    @card_4 = Card.new("What is the deepest part of the ocean", "Marianas Trench", :Geography)
-    @deck = Deck.new([@card_1, @card_2, @card_3, @card_4])
+    filename = 'cards.txt'
+    @card_generator = CardGenerator.new(filename)
+    @card_generator.card_divider
+    @card_generator.card_maker
+    @deck = Deck.new([@card_generator.cards].flatten)
     @round = Round.new(@deck)
   end
 
@@ -35,8 +35,7 @@ class Runner
   end
 
   def introduction
-    puts "This is a 4 question game that will determine your propensity to answer"
-    puts "questions about XXXXXXXX.  Good Luck!"
+    puts "This is a 4 question game. Good Luck!"
     sleep(2)
     system('clear')
   end
