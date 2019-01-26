@@ -7,6 +7,7 @@ require 'pry'
 class Runner
 
   def initialize
+    @cards = CardGenerator.new('/lib/card_generator')
     @card_1 = Card.new("Who is the current president", "Donald Trump", :Politics)
     @card_2 = Card.new("What company has created the Iphone", "Apple", :Finance)
     @card_3 = Card.new("On what continent is the country of Australia located", "Australia", :Geography)
