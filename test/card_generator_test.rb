@@ -24,7 +24,12 @@ class CardGeneratorTest < Minitest::Test
 
   def test_card_generator_can_divide_cards
     @card_generator.card_divider
-    assert_equal [], @card_generator.cards
+    arr = ["Who is the current president?, Donald Trump, Politics
+", "What company has created the Iphone?, Apple, Finance
+", "On what continent is the country of Australia located?, Australia, Geography
+", "What is the deepest part of the ocean?, Marianas Trench, Geography
+"]
+    assert_equal arr, @card_generator.cards
   end
 
 end
