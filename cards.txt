@@ -1,0 +1,4 @@
+Who is the current president?, Donald Trump, Politics
+What company has created the Iphone?, Apple, Finance
+On what continent is the country of Australia located?, Australia, Geography
+What is the deepest part of the ocean?, Marianas Trench, Geography
