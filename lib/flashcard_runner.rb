@@ -128,13 +128,6 @@ class Runner
     puts "\n"
     puts "You had #{@round.number_correct} correct guesses out of #{@round.turns.count} for a total score of #{@round.percent_correct.to_i} out of 100."
     category_correct
-    #
-    # p "******* Game Over! ******"
-    # p "You had #{@round.number_correct} correct guesses out of #{@round.turns.count} for a total score of #{@round.percent_correct}"
-    # p "#{@round.deck.cards[0].category} - #{@round.percent_correct_by_category(@round.deck.cards[0].category)} correct."
-    # p "#{@round.deck.cards[2].category} - #{@round.percent_correct_by_category(@round.deck.cards[2].category)} correct."
-
-
   end
 
   def category_correct
