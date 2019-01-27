@@ -44,7 +44,7 @@ class Runner
     puts "Card number 1 out of 4."
     puts "--------------------------------------"
     puts "\n"
-    puts "Question: #{@card_1.question}"
+    puts "Question: #{@deck.cards[0].question}"
   end
 
   def answer_1_result
@@ -66,7 +66,7 @@ class Runner
     puts "Card number 2 out of 4."
     puts "--------------------------------------"
     puts "\n"
-    puts "Question: #{@card_2.question}"
+    puts "Question: #{@deck.cards[1].question}"
   end
 
   def answer_2_result
@@ -87,7 +87,7 @@ class Runner
     puts "Card number 3 out of 4."
     puts "--------------------------------------"
     puts "\n"
-    puts "Question: #{@card_3.question}"
+    puts "Question: #{@deck.cards[2].question}"
   end
 
   def answer_3_result
@@ -108,13 +108,13 @@ class Runner
     puts "Card number 4 out of 4."
     puts "--------------------------------------"
     puts "\n"
-    puts "Question: #{@card_4.question}"
+    puts "Question: #{@deck.cards[3].question}"
   end
 
   def answer_4_result
     answer_4 = gets.chomp
       @new_turn_4 = @round.take_turn(answer_4)
-    if answer_4 == @new_turn_4.card.answer
+    if answer_4 == @new_turn_4.card.answer || answer_4 == @new_turn_4.card.answer
       puts"Correct!"
     else
       puts "Incorrect."
